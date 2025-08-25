@@ -51,7 +51,7 @@ func NumberRange(min, max int64) ValidateFunc {
 		if intVal >= int64(min) && intVal <= int64(max) {
 			return true, ""
 		}
-		return false, fmt.Sprintf("数值超过允许范围[%s, %s]", min, max)
+		return false, fmt.Sprintf("数值超过允许范围[%d, %d]", min, max)
 	}
 }
 
@@ -93,3 +93,4 @@ func Regexp(re string) ValidateFunc {
 		return false, "格式不符合要求"
 	}
 }
+
