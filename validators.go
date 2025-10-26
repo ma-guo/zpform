@@ -44,10 +44,15 @@ func LengthGT(min int) ValidateFunc {
 
 func NumberRange(min, max int64) ValidateFunc {
 	return func(val string) (bool, string) {
-		intVal, err := strconv.ParseInt(val, 10, 64)
-		if err != nil {
-			return false, "不是数字"
+		intVal := int64(0)
+		var err error = nil
+		if val != "" {
+			intVal, err = strconv.ParseInt(val, 10, 64)
+			if err != nil {
+				return false, "不是数字"
+			}
 		}
+
 		if intVal >= int64(min) && intVal <= int64(max) {
 			return true, ""
 		}
@@ -57,9 +62,13 @@ func NumberRange(min, max int64) ValidateFunc {
 
 func NumberGT(min int64) ValidateFunc {
 	return func(val string) (bool, string) {
-		intVal, err := strconv.ParseInt(val, 10, 64)
-		if err != nil {
-			return false, "不是数字"
+		intVal := int64(0)
+		var err error = nil
+		if val != "" {
+			intVal, err = strconv.ParseInt(val, 10, 64)
+			if err != nil {
+				return false, "不是数字"
+			}
 		}
 		if intVal >= min {
 			return true, ""
@@ -70,9 +79,13 @@ func NumberGT(min int64) ValidateFunc {
 
 func NumberLT(max int64) ValidateFunc {
 	return func(val string) (bool, string) {
-		intVal, err := strconv.ParseInt(val, 10, 64)
-		if err != nil {
-			return false, "不是数字"
+		intVal := int64(0)
+		var err error = nil
+		if val != "" {
+			intVal, err = strconv.ParseInt(val, 10, 64)
+			if err != nil {
+				return false, "不是数字"
+			}
 		}
 		if intVal <= max {
 			return true, ""
@@ -93,4 +106,3 @@ func Regexp(re string) ValidateFunc {
 		return false, "格式不符合要求"
 	}
 }
-
